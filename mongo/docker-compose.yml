@@ -1,0 +1,22 @@
+version: "3"
+services:
+  # ... MORE SERVICES ...
+  mongo-bi:
+    image: juky/mongobi
+    restart: always
+    volumes:
+      - "/c/Users/Administrator/Documents/GHN/spark1/mongo/mongosqld.conf:/home/mongobi/mongosqld.conf"
+    container_name: "mongo-bi"
+    depends_on:
+      - mongo
+    ports:
+      - "3307:3307"
+  mongo:
+    image: mongo
+    restart: always
+    container_name: "mongo"
+    ports:
+      - "27017:27017"
+    environment:
+      - "MONGO_INITDB_ROOT_PASSWORD=123456"
+      - "MONGO_INITDB_ROOT_USERNAME=root"
